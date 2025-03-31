@@ -2,7 +2,7 @@ Create database IF NOT EXISTS llibresapp;
 
 USE llibresapp;
 
-CREATE TABLE llibres (
+CREATE TABLE IF NOT EXISTS llibres (
     id_llibre INT PRIMARY KEY AUTO_INCREMENT,
     isbn VARCHAR(13) UNIQUE NOT NULL,
     titol VARCHAR(255) UNIQUE NOT NULL,

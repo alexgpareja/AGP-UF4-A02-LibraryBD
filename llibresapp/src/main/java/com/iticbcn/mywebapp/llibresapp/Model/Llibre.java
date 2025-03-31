@@ -1,70 +1,36 @@
 package com.iticbcn.mywebapp.llibresapp.Model;
 
-public class Llibre {
+import lombok.*;
+import jakarta.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
+
+@Data // Genera automàticament getters, setters, toString, equals i hashCode
+@AllArgsConstructor // Constructor amb tots els arguments
+@NoArgsConstructor // Constructor sense arguments
+@Entity // Indica que aquesta classe és una entitat JPA
+@Table(name = "llibres") // Especifica el nom de la taula a la base de dades
+public class Llibre implements Serializable {
+
+    @Id // Indica que aquest camp és la clau primària
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Estratègia per autoincrementar l'ID
     private int idLlibre;
+
+    @Column(nullable = false) // El camp no pot ser nul
     private String titol;
+
+    @Column(nullable = false)
     private String autor;
+
+    @Column(nullable = false)
     private String editorial;
-    private String datapublicacio;
+
+    @Column(nullable = false)
+    private LocalDate datapublicacio; // Canviem el tipus a LocalDate
+
+    @Column(nullable = false)
     private String tematica;
 
-    public Llibre() {
-    }
-
-    public Llibre(int idLlibre, String titol, String autor, String editorial, String datapublicacio, String tematica) {
-        this.idLlibre = idLlibre;
-        this.titol = titol;
-        this.autor = autor;
-        this.editorial = editorial;
-        this.datapublicacio = datapublicacio;
-        this.tematica = tematica;
-    }
-
-    public int getIdLlibre() {
-        return idLlibre;
-    }
-
-    public void setIdLlibre(int idLlibre) {
-        this.idLlibre = idLlibre;
-    }
-
-    public String getTitol() {
-        return titol;
-    }
-
-    public void setTitol(String titol) {
-        this.titol = titol;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public String getDatapublicacio() {
-        return datapublicacio;
-    }
-
-    public void setDatapublicacio(String datapublicacio) {
-        this.datapublicacio = datapublicacio;
-    }
-
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
-        this.tematica = tematica;
-    }
+    @Column(nullable = false, unique = true) // El camp ha de ser únic i no nul
+    private String isbn;
 }
